@@ -1,0 +1,18 @@
+ATIVIDADE AVALIATIVA – UNIDADE II
+Aluno: Henrique Silva Viana
+Assunto: Parecer sobre o uso de IA no desenvolvimento da Calculadora em Python
+
+1. O que foi feito (Estudo de Caso)
+Para essa atividade, eu desenvolvi uma calculadora em Python que faz as quatro operações básicas e tem um menu que roda em loop. Usei a IA integrada ao Colab para me ajudar a estruturar o esqueleto do código (o while e o if/else). A ideia foi usar a IA como uma "garra" para acelerar a parte chata e focar na lógica.
+
+2. Como apliquei os princípios do PDF
+Segui o guia de boas práticas da aula para não entregar um código qualquer:
+
+Transparência e Verificação: Eu não só dei Ctrl+C / Ctrl+V. Eu conferi se o try/except estava realmente pegando erros de digitação (tipo quando o usuário digita uma letra em vez de número) para o programa não fechar sozinho.
+
+Segurança (O Lado Oculto): No PDF fala que a IA pode ignorar segurança. Por isso, eu fiz questão de revisar a parte da divisão. Se o usuário tentar dividir por zero, o código avisa o erro em vez de travar tudo.
+
+Revisão por Pares: Tratei as sugestões da IA como se fosse um colega de sala me ajudando, revisando cada linha para garantir que eu entendia o que estava acontecendo.
+
+3. Conclusão
+A IA ajudou muito na velocidade, mas, como vimos na aula e no podcast, a responsabilidade final é minha. Se o código der erro ou tiver bug, o "humano" aqui é quem responde por ele. O uso dessas ferramentas hoje é o padrão, mas só funciona se a gente souber o que está pedindo e souber conferir o resultado.
