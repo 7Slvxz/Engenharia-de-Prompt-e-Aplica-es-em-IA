@@ -1,0 +1,2744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercadinho do Irmão — README</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --accent: #7c5cbf;
+      --accent2: #a47fe3;
+      --text: #e8eaf0;
+      --muted: #8b90a8;
+      --green: #4caf88;
+      --yellow: #e8b84b;
+      --red: #e05c5c;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+      --mono: 'Fira Code', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    nav {
+      width: 260px;
+      min-width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 32px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo span { font-size: 24px; }
+
+    .nav-section {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin: 16px 0 6px;
+      padding-left: 8px;
+    }
+
+    nav a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+
+    nav a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    nav a.active {
+      background: rgba(124, 92, 191, 0.2);
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 48px 56px;
+      max-width: 960px;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1e1b35 0%, #1a2235 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .badges { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .badge.green { border-color: var(--green); color: var(--green); }
+    .badge.purple { border-color: var(--accent); color: var(--accent2); }
+    .badge.yellow { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 56px; scroll-margin-top: 24px; }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 .icon { font-size: 20px; }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent2);
+      margin: 28px 0 12px;
+    }
+
+    p { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
+
+    /* ── FEATURE CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      transition: border-color 0.15s;
+    }
+
+    .card:hover { border-color: var(--accent); }
+
+    .card-icon { font-size: 26px; margin-bottom: 10px; }
+
+    .card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+    }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); margin-bottom: 24px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead tr { background: var(--surface2); }
+
+    thead th {
+      text-align: left;
+      padding: 12px 16px;
+      color: var(--accent2);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    tbody tr:hover { background: var(--surface2); }
+
+    tbody td {
+      padding: 11px 16px;
+      color: var(--muted);
+      vertical-align: top;
+    }
+
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+
+    code {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent2);
+    }
+
+    /* ── ARCHITECTURE BLOCK ── */
+    .arch {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+
+    .arch .hl { color: var(--accent2); font-weight: 600; }
+    .arch .dim { color: #4a4f6a; }
+    .arch .tag {
+      background: rgba(124,92,191,0.15);
+      border-radius: 4px;
+      padding: 1px 8px;
+      color: var(--accent2);
+      font-size: 11px;
+    }
+
+    /* ── ISSUES ── */
+    .issue-group { margin-bottom: 20px; }
+
+    .issue-page {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--yellow);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .issue-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .issue-item strong { color: var(--text); }
+
+    /* ── ROADMAP ── */
+    .roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .roadmap-item:last-child { border-bottom: none; }
+
+    .roadmap-item .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .roadmap-item.done .dot {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    /* ── STATE TABLE ── */
+    .state-badge {
+      background: rgba(124,92,191,0.15);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      padding: 1px 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ SIDEBAR ══════════════ -->
+<nav>
+  <div class="nav-logo"><span>🛒</span> Mercadinho</div>
+
+  <div class="nav-section">Geral</div>
+  <a href="#overview" class="active">Visão Geral</a>
+  <a href="#features">Funcionalidades</a>
+
+  <div class="nav-section">Técnico</div>
+  <a href="#architecture">Arquitetura</a>
+  <a href="#data-model">Modelo de Dados</a>
+  <a href="#pages">Páginas</a>
+  <a href="#workflows">Workflows</a>
+  <a href="#states">Custom States</a>
+
+  <div class="nav-section">Status</div>
+  <a href="#issues">Problemas Conhecidos</a>
+  <a href="#roadmap">Roadmap</a>
+</nav>
+
+<!-- ══════════════ MAIN ══════════════ -->
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>🛒 Mercadinho do Irmão</h1>
+    <p>Sistema de Ponto de Venda (PDV) e gestão de estoque para pequeno varejo, construído integralmente em Bubble.io.</p>
+    <div class="badges">
+      <span class="badge purple">Bubble.io</span>
+      <span class="badge green">Versão: test</span>
+      <span class="badge yellow">Moeda: BRL (R$)</span>
+      <span class="badge">Idioma: PT-BR</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2><span class="icon">📋</span> Visão Geral</h2>
+    <p>
+      <strong style="color:var(--text)">Mercadinho do Irmão</strong> é um sistema web de PDV voltado para pequenos mercados e mercearias.
+      Permite ao caixa registrar vendas por leitura de código de barras, gerenciar o catálogo de produtos
+      e visualizar o ranking de produtos mais vendidos — tudo em uma única interface consolidada.
+    </p>
+    <p>
+      O sistema conta ainda com uma <strong style="color:var(--text)">tela de cliente</strong> (customer display)
+      que exibe em tempo real os itens adicionados ao carrinho e o total a pagar.
+    </p>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <h2><span class="icon">✨</span> Funcionalidades</h2>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-icon">🖥️</div>
+        <h4>PDV (Ponto de Venda)</h4>
+        <ul>
+          <li>Leitura de código de barras</li>
+          <li>Adição automática ao carrinho</li>
+          <li>Último item escaneado em destaque</li>
+          <li>Ajuste de quantidade</li>
+          <li>Limpeza e remoção de itens</li>
+          <li>Pix, Cartão ou Dinheiro</li>
+          <li>Confirmação cria Sale + SaleItems</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <h4>Estoque</h4>
+        <ul>
+          <li>Listagem completa de produtos</li>
+          <li>Filtros: Todos / Baixo / Sem estoque</li>
+          <li>Busca por nome ou barcode</li>
+          <li>Cadastro de novo produto</li>
+          <li>Edição de produto existente</li>
+          <li>Exclusão com confirmação</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h4>Ranking de Vendas</h4>
+        <ul>
+          <li>Filtro por Dia / Semana / Mês / Ano</li>
+          <li>Cards de destaque 1º, 2º e 3º</li>
+          <li>Grade completa com receita</li>
+          <li>Total de unidades e SKUs ativos</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📺</div>
+        <h4>Tela de Cliente</h4>
+        <ul>
+          <li>Display em tempo real</li>
+          <li>Último item + subtotal + total</li>
+          <li>Auto-refresh contínuo</li>
+          <li>Bilíngue: PT / EN</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
+    <h2><span class="icon">🏗️</span> Arquitetura do App</h2>
+    <div class="arch">
+      <span class="hl">Bubble.io Web App</span><br>
+      │<br>
+      ├── <span class="hl">Sidebar Reusável</span> <span class="dim">(navegação global)</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Link → PDV &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">?tab=pdv</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Link → Estoque &nbsp;<span class="tag">?tab=estoque</span><br>
+      │&nbsp;&nbsp;&nbsp;└── Link → Ranking &nbsp;<span class="tag">?tab=ranking</span><br>
+      │<br>
+      ├── <span class="hl">index</span> <span class="dim">(página principal consolidada)</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Group pos-main &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">current_tab = "pdv"</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Group catalog-main &nbsp;<span class="tag">current_tab = "estoque"</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Group ranking-main &nbsp;<span class="tag">current_tab = "ranking"</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Popup add-product-popup<br>
+      │&nbsp;&nbsp;&nbsp;├── Popup edit-product-popup<br>
+      │&nbsp;&nbsp;&nbsp;└── Popup delete-product-popup<br>
+      │<br>
+      ├── <span class="hl">customer</span> &nbsp;<span class="dim">(tela de cliente — display secundário)</span><br>
+      ├── <span class="hl">ranking</span> &nbsp;&nbsp;<span class="dim">⚠ legada — pode ser removida</span><br>
+      ├── <span class="hl">catalog</span> &nbsp;&nbsp;<span class="dim">⚠ legada — pode ser removida</span><br>
+      ├── <span class="hl">reset_pw</span> <span class="dim">(redefinição de senha)</span><br>
+      └── <span class="hl">404</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dim">(página não encontrada)</span>
+    </div>
+
+    <h3>Navegação por Abas</h3>
+    <p>
+      A página <code>index</code> usa um Custom State <code>current_tab</code> (text, padrão: <code>"pdv"</code>)
+      para controlar qual seção está visível. A navegação ocorre via parâmetro de URL <code>?tab=</code>,
+      lido no evento <strong style="color:var(--text)">Page is loaded</strong>. Cada grupo de conteúdo
+      possui condicional de visibilidade e <strong style="color:var(--text)">Collapse when hidden</strong> ativado.
+    </p>
+  </section>
+
+  <!-- DATA MODEL -->
+  <section id="data-model">
+    <h2><span class="icon">🗄️</span> Modelo de Dados</h2>
+
+    <h3>User</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>name</code></td><td>text</td><td>Nome do operador/caixa</td></tr>
+          <tr><td><code>theme</code></td><td>text</td><td>Preferência de tema visual</td></tr>
+          <tr><td><code>email</code></td><td>text</td><td>E-mail de acesso</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Product</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>name</code></td><td>text</td><td>Nome do produto</td></tr>
+          <tr><td><code>barcode</code></td><td>text</td><td>Código de barras (EAN/UPC)</td></tr>
+          <tr><td><code>price</code></td><td>number</td><td>Preço unitário (R$)</td></tr>
+          <tr><td><code>stock</code></td><td>number</td><td>Quantidade em estoque</td></tr>
+          <tr><td><code>alert_level</code></td><td>number</td><td>Nível mínimo para alerta de estoque baixo</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Sale</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>status</code></td><td>text</td><td>Status da venda (<code>open</code> / <code>closed</code>)</td></tr>
+          <tr><td><code>cashier</code></td><td>User</td><td>Operador que realizou a venda</td></tr>
+          <tr><td><code>total</code></td><td>number</td><td>Valor total da venda (R$)</td></tr>
+          <tr><td><code>closed_at</code></td><td>date</td><td>Data/hora de fechamento</td></tr>
+          <tr><td><code>payment_method</code></td><td>text</td><td><code>Pix</code>, <code>Card</code> ou <code>Cash</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>SaleItem</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>sale</code></td><td>Sale</td><td>Venda à qual o item pertence</td></tr>
+          <tr><td><code>product</code></td><td>Product</td><td>Produto vendido</td></tr>
+          <tr><td><code>quantity</code></td><td>number</td><td>Quantidade vendida</td></tr>
+          <tr><td><code>unit_price</code></td><td>number</td><td>Preço unitário no momento da venda</td></tr>
+          <tr><td><code>subtotal</code></td><td>number</td><td><code>quantity × unit_price</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PAGES -->
+  <section id="pages">
+    <h2><span class="icon">📄</span> Páginas e Navegação</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Página</th><th>Slug</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Index</strong></td><td><code>/</code></td><td>App principal: PDV, Estoque e Ranking em abas</td></tr>
+          <tr><td><strong>Customer</strong></td><td><code>/customer</code></td><td>Tela do cliente — display em tempo real</td></tr>
+          <tr><td><strong>Catalog</strong></td><td><code>/catalog</code></td><td>⚠️ Legada — conteúdo migrado para Index</td></tr>
+          <tr><td><strong>Ranking</strong></td><td><code>/ranking</code></td><td>⚠️ Legada — conteúdo migrado para Index</td></tr>
+          <tr><td><strong>Reset PW</strong></td><td><code>/reset_pw</code></td><td>Redefinição de senha via e-mail</td></tr>
+          <tr><td><strong>404</strong></td><td><code>/404</code></td><td>Página de erro com botão "Go Home"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WORKFLOWS -->
+  <section id="workflows">
+    <h2><span class="icon">⚙️</span> Workflows</h2>
+
+    <h3>PDV — index</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Trigger</th><th>Ações</th></tr></thead>
+        <tbody>
+          <tr><td>Clique em <strong>Scan / Add Item</strong></td><td>ShowElement (barcode popup), DisplayGroupData</td></tr>
+          <tr><td>Clique em <strong>Clear</strong></td><td>ResetInputs (limpa carrinho)</td></tr>
+          <tr><td>Clique em <strong>Delete item</strong></td><td>DeleteThing (remove SaleItem)</td></tr>
+          <tr><td>Clique em <strong>Confirm Sale</strong></td><td>ChangeThing (atualiza Sale), NewThing (cria Sale)</td></tr>
+          <tr><td>Clique em <strong>Add to Cart</strong></td><td>NewThing (cria SaleItem), HideElement</td></tr>
+          <tr><td>Clique em <strong>Cancel / Close</strong></td><td>HideElement</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Estoque — index</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Trigger</th><th>Ações</th></tr></thead>
+        <tbody>
+          <tr><td>Clique em <strong>Add Product</strong></td><td>ShowElement (popup add)</td></tr>
+          <tr><td>Filtro <strong>All / Low / Out</strong></td><td>DisplayListData (filtra repeating group)</td></tr>
+          <tr><td>Clique em <strong>Edit</strong></td><td>DisplayGroupData + ShowElement (popup edit)</td></tr>
+          <tr><td>Clique em <strong>Delete</strong></td><td>DisplayGroupData + ShowElement (popup delete)</td></tr>
+          <tr><td>Clique em <strong>Save Product</strong></td><td>NewThing (Product), HideElement, ResetInputs</td></tr>
+          <tr><td>Clique em <strong>Save Changes</strong></td><td>ChangeThing (Product), HideElement</td></tr>
+          <tr><td>Clique em <strong>Delete Product</strong></td><td>DeleteThing, HideElement</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Navegação Global</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Trigger</th><th>Ações</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Page is loaded</strong></td><td>Lê <code>?tab=</code> da URL, define <code>current_tab</code></td></tr>
+          <tr><td>Sidebar → PDV</td><td>Navega para <code>/?tab=pdv</code></td></tr>
+          <tr><td>Sidebar → Estoque</td><td>Navega para <code>/?tab=estoque</code></td></tr>
+          <tr><td>Sidebar → Ranking</td><td>Navega para <code>/?tab=ranking</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- STATES -->
+  <section id="states">
+    <h2><span class="icon">🔀</span> Custom States</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Elemento</th><th>Estado</th><th>Tipo</th><th>Padrão</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>index</code></td>
+            <td><span class="state-badge">current_tab</span></td>
+            <td>text</td>
+            <td><code>"pdv"</code></td>
+            <td>Controla qual aba está visível</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ISSUES -->
+  <section id="issues">
+    <h2><span class="icon">⚠️</span> Problemas Conhecidos</h2>
+
+    <div class="issue-group">
+      <div class="issue-page">📄 Página: index</div>
+      <div class="issue-item"><strong>Group pos-stat-items:</strong> Data source recebe <code>List of Sales</code> em vez de <code>Sale</code></div>
+      <div class="issue-item"><strong>Search for SaleItems (×2):</strong> <code>value</code> deveria ser <code>Sale</code>, não <code>List of Sales</code></div>
+      <div class="issue-item"><strong>Button pos-barcode-trigger-btn:</strong> Grupo pai sem tipo de dado configurado</div>
+      <div class="issue-item"><strong>Button confirm-sale-btn:</strong> Grupo pai <code>pos-cart-section</code> sem tipo de dado configurado</div>
+    </div>
+
+    <div class="issue-group">
+      <div class="issue-page">📄 Página: catalog</div>
+      <div class="issue-item"><strong>Search for Products (×2):</strong> <code>value</code> deveria ser <code>text</code>, está recebendo <code>Product</code></div>
+      <div class="issue-item"><strong>Button filter-low:</strong> Grupo pai <code>filter-buttons</code> sem tipo de dado</div>
+    </div>
+
+    <div class="issue-group">
+      <div class="issue-page">📄 Página: customer</div>
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercadinho do Irmão — README</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --accent: #7c5cbf;
+      --accent2: #a47fe3;
+      --text: #e8eaf0;
+      --muted: #8b90a8;
+      --green: #4caf88;
+      --yellow: #e8b84b;
+      --red: #e05c5c;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+      --mono: 'Fira Code', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    nav {
+      width: 260px;
+      min-width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 32px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo span { font-size: 24px; }
+
+    .nav-section {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin: 16px 0 6px;
+      padding-left: 8px;
+    }
+
+    nav a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+
+    nav a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    nav a.active {
+      background: rgba(124, 92, 191, 0.2);
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 48px 56px;
+      max-width: 960px;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1e1b35 0%, #1a2235 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .badges { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .badge.green { border-color: var(--green); color: var(--green); }
+    .badge.purple { border-color: var(--accent); color: var(--accent2); }
+    .badge.yellow { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 56px; scroll-margin-top: 24px; }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 .icon { font-size: 20px; }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent2);
+      margin: 28px 0 12px;
+    }
+
+    p { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
+
+    /* ── FEATURE CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      transition: border-color 0.15s;
+    }
+
+    .card:hover { border-color: var(--accent); }
+
+    .card-icon { font-size: 26px; margin-bottom: 10px; }
+
+    .card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+    }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); margin-bottom: 24px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead tr { background: var(--surface2); }
+
+    thead th {
+      text-align: left;
+      padding: 12px 16px;
+      color: var(--accent2);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    tbody tr:hover { background: var(--surface2); }
+
+    tbody td {
+      padding: 11px 16px;
+      color: var(--muted);
+      vertical-align: top;
+    }
+
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+
+    code {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent2);
+    }
+
+    /* ── ARCHITECTURE BLOCK ── */
+    .arch {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+
+    .arch .hl { color: var(--accent2); font-weight: 600; }
+    .arch .dim { color: #4a4f6a; }
+    .arch .tag {
+      background: rgba(124,92,191,0.15);
+      border-radius: 4px;
+      padding: 1px 8px;
+      color: var(--accent2);
+      font-size: 11px;
+    }
+
+    /* ── ISSUES ── */
+    .issue-group { margin-bottom: 20px; }
+
+    .issue-page {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--yellow);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .issue-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .issue-item strong { color: var(--text); }
+
+    /* ── ROADMAP ── */
+    .roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .roadmap-item:last-child { border-bottom: none; }
+
+    .roadmap-item .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .roadmap-item.done .dot {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    /* ── STATE TABLE ── */
+    .state-badge {
+      background: rgba(124,92,191,0.15);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      padding: 1px 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ SIDEBAR ══════════════ -->
+<nav>
+  <div class="nav-logo"><span>🛒</span> Mercadinho</div>
+
+  <div class="nav-section">Geral</div>
+  <a href="#overview" class="active">Visão Geral</a>
+  <a href="#features">Funcionalidades</a>
+
+  <div class="nav-section">Técnico</div>
+  <a href="#architecture">Arquitetura</a>
+  <a href="#data-model">Modelo de Dados</a>
+  <a href="#pages">Páginas</a>
+  <a href="#workflows">Workflows</a>
+  <a href="#states">Custom States</a>
+
+  <div class="nav-section">Status</div>
+  <a href="#issues">Problemas Conhecidos</a>
+  <a href="#roadmap">Roadmap</a>
+</nav>
+
+<!-- ══════════════ MAIN ══════════════ -->
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>🛒 Mercadinho do Irmão</h1>
+    <p>Sistema de Ponto de Venda (PDV) e gestão de estoque para pequeno varejo, construído integralmente em Bubble.io.</p>
+    <div class="badges">
+      <span class="badge purple">Bubble.io</span>
+      <span class="badge green">Versão: test</span>
+      <span class="badge yellow">Moeda: BRL (R$)</span>
+      <span class="badge">Idioma: PT-BR</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2><span class="icon">📋</span> Visão Geral</h2>
+    <p>
+      <strong style="color:var(--text)">Mercadinho do Irmão</strong> é um sistema web de PDV voltado para pequenos mercados e mercearias.
+      Permite ao caixa registrar vendas por leitura de código de barras, gerenciar o catálogo de produtos
+      e visualizar o ranking de produtos mais vendidos — tudo em uma única interface consolidada.
+    </p>
+    <p>
+      O sistema conta ainda com uma <strong style="color:var(--text)">tela de cliente</strong> (customer display)
+      que exibe em tempo real os itens adicionados ao carrinho e o total a pagar.
+    </p>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <h2><span class="icon">✨</span> Funcionalidades</h2>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-icon">🖥️</div>
+        <h4>PDV (Ponto de Venda)</h4>
+        <ul>
+          <li>Leitura de código de barras</li>
+          <li>Adição automática ao carrinho</li>
+          <li>Último item escaneado em destaque</li>
+          <li>Ajuste de quantidade</li>
+          <li>Limpeza e remoção de itens</li>
+          <li>Pix, Cartão ou Dinheiro</li>
+          <li>Confirmação cria Sale + SaleItems</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <h4>Estoque</h4>
+        <ul>
+          <li>Listagem completa de produtos</li>
+          <li>Filtros: Todos / Baixo / Sem estoque</li>
+          <li>Busca por nome ou barcode</li>
+          <li>Cadastro de novo produto</li>
+          <li>Edição de produto existente</li>
+          <li>Exclusão com confirmação</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h4>Ranking de Vendas</h4>
+        <ul>
+          <li>Filtro por Dia / Semana / Mês / Ano</li>
+          <li>Cards de destaque 1º, 2º e 3º</li>
+          <li>Grade completa com receita</li>
+          <li>Total de unidades e SKUs ativos</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📺</div>
+        <h4>Tela de Cliente</h4>
+        <ul>
+          <li>Display em tempo real</li>
+          <li>Último item + subtotal + total</li>
+          <li>Auto-refresh contínuo</li>
+          <li>Bilíngue: PT / EN</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
+    <h2><span class="icon">🏗️</span> Arquitetura do App</h2>
+    <div class="arch">
+      <span class="hl">Bubble.io Web App</span><br>
+      │<br>
+      ├── <span class="hl">Sidebar Reusável</span> <span class="dim">(navegação global)</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Link → PDV &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">?tab=pdv</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Link → Estoque &nbsp;<span class="tag">?tab=estoque</span><br>
+      │&nbsp;&nbsp;&nbsp;└── Link → Ranking &nbsp;<span class="tag">?tab=ranking</span><br>
+      │<br>
+      ├── <span class="hl">index</span> <span class="dim">(página principal consolidada)</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Group pos-main &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">current_tab = "pdv"</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Group catalog-main &nbsp;<span class="tag">current_tab = "estoque"</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Group ranking-main &nbsp;<span class="tag">current_tab = "ranking"</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Popup add-product-popup<br>
+      │&nbsp;&nbsp;&nbsp;├── Popup edit-product-popup<br>
+      │&nbsp;&nbsp;&nbsp;└── Popup delete-product-popup<br>
+      │<br>
+      ├── <span class="hl">customer</span> &nbsp;<span class="dim">(tela de cliente — display secundário)</span><br>
+      ├── <span class="hl">ranking</span> &nbsp;&nbsp;<span class="dim">⚠ legada — pode ser removida</span><br>
+      ├── <span class="hl">catalog</span> &nbsp;&nbsp;<span class="dim">⚠ legada — pode ser removida</span><br>
+      ├── <span class="hl">reset_pw</span> <span class="dim">(redefinição de senha)</span><br>
+      └── <span class="hl">404</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dim">(página não encontrada)</span>
+    </div>
+
+    <h3>Navegação por Abas</h3>
+    <p>
+      A página <code>index</code> usa um Custom State <code>current_tab</code> (text, padrão: <code>"pdv"</code>)
+      para controlar qual seção está visível. A navegação ocorre via parâmetro de URL <code>?tab=</code>,
+      lido no evento <strong style="color:var(--text)">Page is loaded</strong>. Cada grupo de conteúdo
+      possui condicional de visibilidade e <strong style="color:var(--text)">Collapse when hidden</strong> ativado.
+    </p>
+  </section>
+
+  <!-- DATA MODEL -->
+  <section id="data-model">
+    <h2><span class="icon">🗄️</span> Modelo de Dados</h2>
+
+    <h3>User</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>name</code></td><td>text</td><td>Nome do operador/caixa</td></tr>
+          <tr><td><code>theme</code></td><td>text</td><td>Preferência de tema visual</td></tr>
+          <tr><td><code>email</code></td><td>text</td><td>E-mail de acesso</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Product</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>name</code></td><td>text</td><td>Nome do produto</td></tr>
+          <tr><td><code>barcode</code></td><td>text</td><td>Código de barras (EAN/UPC)</td></tr>
+          <tr><td><code>price</code></td><td>number</td><td>Preço unitário (R$)</td></tr>
+          <tr><td><code>stock</code></td><td>number</td><td>Quantidade em estoque</td></tr>
+          <tr><td><code>alert_level</code></td><td>number</td><td>Nível mínimo para alerta de estoque baixo</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Sale</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>status</code></td><td>text</td><td>Status da venda (<code>open</code> / <code>closed</code>)</td></tr>
+          <tr><td><code>cashier</code></td><td>User</td><td>Operador que realizou a venda</td></tr>
+          <tr><td><code>total</code></td><td>number</td><td>Valor total da venda (R$)</td></tr>
+          <tr><td><code>closed_at</code></td><td>date</td><td>Data/hora de fechamento</td></tr>
+          <tr><td><code>payment_method</code></td><td>text</td><td><code>Pix</code>, <code>Card</code> ou <code>Cash</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>SaleItem</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><code>sale</code></td><td>Sale</td><td>Venda à qual o item pertence</td></tr>
+          <tr><td><code>product</code></td><td>Product</td><td>Produto vendido</td></tr>
+          <tr><td><code>quantity</code></td><td>number</td><td>Quantidade vendida</td></tr>
+          <tr><td><code>unit_price</code></td><td>number</td><td>Preço unitário no momento da venda</td></tr>
+          <tr><td><code>subtotal</code></td><td>number</td><td><code>quantity × unit_price</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PAGES -->
+  <section id="pages">
+    <h2><span class="icon">📄</span> Páginas e Navegação</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Página</th><th>Slug</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Index</strong></td><td><code>/</code></td><td>App principal: PDV, Estoque e Ranking em abas</td></tr>
+          <tr><td><strong>Customer</strong></td><td><code>/customer</code></td><td>Tela do cliente — display em tempo real</td></tr>
+          <tr><td><strong>Catalog</strong></td><td><code>/catalog</code></td><td>⚠️ Legada — conteúdo migrado para Index</td></tr>
+          <tr><td><strong>Ranking</strong></td><td><code>/ranking</code></td><td>⚠️ Legada — conteúdo migrado para Index</td></tr>
+          <tr><td><strong>Reset PW</strong></td><td><code>/reset_pw</code></td><td>Redefinição de senha via e-mail</td></tr>
+          <tr><td><strong>404</strong></td><td><code>/404</code></td><td>Página de erro com botão "Go Home"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WORKFLOWS -->
+  <section id="workflows">
+    <h2><span class="icon">⚙️</span> Workflows</h2>
+
+    <h3>PDV — index</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Trigger</th><th>Ações</th></tr></thead>
+        <tbody>
+          <tr><td>Clique em <strong>Scan / Add Item</strong></td><td>ShowElement (barcode popup), DisplayGroupData</td></tr>
+          <tr><td>Clique em <strong>Clear</strong></td><td>ResetInputs (limpa carrinho)</td></tr>
+          <tr><td>Clique em <strong>Delete item</strong></td><td>DeleteThing (remove SaleItem)</td></tr>
+          <tr><td>Clique em <strong>Confirm Sale</strong></td><td>ChangeThing (atualiza Sale), NewThing (cria Sale)</td></tr>
+          <tr><td>Clique em <strong>Add to Cart</strong></td><td>NewThing (cria SaleItem), HideElement</td></tr>
+          <tr><td>Clique em <strong>Cancel / Close</strong></td><td>HideElement</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Estoque — index</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Trigger</th><th>Ações</th></tr></thead>
+        <tbody>
+          <tr><td>Clique em <strong>Add Product</strong></td><td>ShowElement (popup add)</td></tr>
+          <tr><td>Filtro <strong>All / Low / Out</strong></td><td>DisplayListData (filtra repeating group)</td></tr>
+          <tr><td>Clique em <strong>Edit</strong></td><td>DisplayGroupData + ShowElement (popup edit)</td></tr>
+          <tr><td>Clique em <strong>Delete</strong></td><td>DisplayGroupData + ShowElement (popup delete)</td></tr>
+          <tr><td>Clique em <strong>Save Product</strong></td><td>NewThing (Product), HideElement, ResetInputs</td></tr>
+          <tr><td>Clique em <strong>Save Changes</strong></td><td>ChangeThing (Product), HideElement</td></tr>
+          <tr><td>Clique em <strong>Delete Product</strong></td><td>DeleteThing, HideElement</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Navegação Global</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Trigger</th><th>Ações</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Page is loaded</strong></td><td>Lê <code>?tab=</code> da URL, define <code>current_tab</code></td></tr>
+          <tr><td>Sidebar → PDV</td><td>Navega para <code>/?tab=pdv</code></td></tr>
+          <tr><td>Sidebar → Estoque</td><td>Navega para <code>/?tab=estoque</code></td></tr>
+          <tr><td>Sidebar → Ranking</td><td>Navega para <code>/?tab=ranking</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- STATES -->
+  <section id="states">
+    <h2><span class="icon">🔀</span> Custom States</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Elemento</th><th>Estado</th><th>Tipo</th><th>Padrão</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>index</code></td>
+            <td><span class="state-badge">current_tab</span></td>
+            <td>text</td>
+            <td><code>"pdv"</code></td>
+            <td>Controla qual aba está visível</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ISSUES -->
+  <section id="issues">
+    <h2><span class="icon">⚠️</span> Problemas Conhecidos</h2>
+
+    <div class="issue-group">
+      <div class="issue-page">📄 Página: index</div>
+      <div class="issue-item"><strong>Group pos-stat-items:</strong> Data source recebe <code>List of Sales</code> em vez de <code>Sale</code></div>
+      <div class="issue-item"><strong>Search for SaleItems (×2):</strong> <code>value</code> deveria ser <code>Sale</code>, não <code>List of Sales</code></div>
+      <div class="issue-item"><strong>Button pos-barcode-trigger-btn:</strong> Grupo pai sem tipo de dado configurado</div>
+      <div class="issue-item"><strong>Button confirm-sale-btn:</strong> Grupo pai <code>pos-cart
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercadinho do Irmão — README</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --accent: #7c5cbf;
+      --accent2: #a47fe3;
+      --text: #e8eaf0;
+      --muted: #8b90a8;
+      --green: #4caf88;
+      --yellow: #e8b84b;
+      --red: #e05c5c;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+      --mono: 'Fira Code', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    nav {
+      width: 260px;
+      min-width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 32px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo span { font-size: 24px; }
+
+    .nav-section {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin: 16px 0 6px;
+      padding-left: 8px;
+    }
+
+    nav a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+
+    nav a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    nav a.active {
+      background: rgba(124, 92, 191, 0.2);
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 48px 56px;
+      max-width: 960px;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1e1b35 0%, #1a2235 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .badges { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .badge.green { border-color: var(--green); color: var(--green); }
+    .badge.purple { border-color: var(--accent); color: var(--accent2); }
+    .badge.yellow { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 56px; scroll-margin-top: 24px; }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 .icon { font-size: 20px; }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent2);
+      margin: 28px 0 12px;
+    }
+
+    p { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
+
+    /* ── FEATURE CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      transition: border-color 0.15s;
+    }
+
+    .card:hover { border-color: var(--accent); }
+
+    .card-icon { font-size: 26px; margin-bottom: 10px; }
+
+    .card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+    }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); margin-bottom: 24px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead tr { background: var(--surface2); }
+
+    thead th {
+      text-align: left;
+      padding: 12px 16px;
+      color: var(--accent2);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    tbody tr:hover { background: var(--surface2); }
+
+    tbody td {
+      padding: 11px 16px;
+      color: var(--muted);
+      vertical-align: top;
+    }
+
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+
+    code {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent2);
+    }
+
+    /* ── ARCHITECTURE BLOCK ── */
+    .arch {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+
+    .arch .hl { color: var(--accent2); font-weight: 600; }
+    .arch .dim { color: #4a4f6a; }
+    .arch .tag {
+      background: rgba(124,92,191,0.15);
+      border-radius: 4px;
+      padding: 1px 8px;
+      color: var(--accent2);
+      font-size: 11px;
+    }
+
+    /* ── ISSUES ── */
+    .issue-group { margin-bottom: 20px; }
+
+    .issue-page {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--yellow);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .issue-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .issue-item strong { color: var(--text); }
+
+    /* ── ROADMAP ── */
+    .roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .roadmap-item:last-child { border-bottom: none; }
+
+    .roadmap-item .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .roadmap-item.done .dot {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    /* ── STATE TABLE ── */
+    .state-badge {
+      background: rgba(124,92,191,0.15);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      padding: 1px 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ SIDEBAR ══════════════ -->
+<nav>
+  <div class="nav-logo"><span>🛒</span> Mercadinho</div>
+
+  <div class="nav-section">Geral</div>
+  <a href="#overview" class="active">Visão Geral</a>
+  <a href="#features">Funcionalidades</a>
+
+  <div class="nav-section">Técnico</div>
+  <a href="#architecture">Arquitetura</a>
+  <a href="#data-model">Modelo de Dados</a>
+  <a href="#pages">Páginas</a>
+  <a href="#workflows">Workflows</a>
+  <a href="#states">Custom States</a>
+
+  <div class="nav-section">Status</div>
+  <a href="#issues">Problemas Conhecidos</a>
+  <a href="#roadmap">Roadmap</a>
+</nav>
+
+<!-- ══════════════ MAIN ══════════════ -->
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>🛒 Mercadinho do Irmão</h1>
+    <p>Sistema de Ponto de Venda (PDV) e gestão de estoque para pequeno varejo, construído integralmente em Bubble.io.</p>
+    <div class="badges">
+      <span class="badge purple">Bubble.io</span>
+      <span class="badge green">Versão: test</span>
+      <span class="badge yellow">Moeda: BRL (R$)</span>
+      <span class="badge">Idioma: PT-BR</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2><span class="icon">📋</span> Visão Geral</h2>
+    <p>
+      <strong style="color:var(--text)">Mercadinho do Irmão</strong> é um sistema web de PDV voltado para pequenos mercados e mercearias.
+      Permite ao caixa registrar vendas por leitura de código de barras, gerenciar o catálogo de produtos
+      e visualizar o ranking de produtos mais vendidos — tudo em uma única interface consolidada.
+    </p>
+    <p>
+      O sistema conta ainda com uma <strong style="color:var(--text)">tela de cliente</strong> (customer display)
+      que exibe em tempo real os itens adicionados ao carrinho e o total a pagar.
+    </p>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <h2><span class="icon">✨</span> Funcionalidades</h2>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-icon">🖥️</div>
+        <h4>PDV (Ponto de Venda)</h4>
+        <ul>
+          <li>Leitura de código de barras</li>
+          <li>Adição automática ao carrinho</li>
+          <li>Último item escaneado em destaque</li>
+          <li>Ajuste de quantidade</li>
+          <li>Limpeza e remoção de itens</li>
+          <li>Pix, Cartão ou Dinheiro</li>
+          <li>Confirmação cria Sale + SaleItems</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <h4>Estoque</h4>
+        <ul>
+          <li>Listagem completa de produtos</li>
+          <li>Filtros: Todos / Baixo / Sem estoque</li>
+          <li>Busca por nome ou barcode</li>
+          <li>Cadastro de novo produto</li>
+          <li>Edição de produto existente</li>
+          <li>Exclusão com confirmação</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h4>Ranking de Vendas</h4>
+        <ul>
+          <li>Filtro por Dia / Semana / Mês / Ano</li>
+          <li>Cards de destaque 1º, 2º e 3º</li>
+          <li>Grade completa com receita</li>
+          <li>Total de unidades e SKUs ativos</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📺</div>
+        <h4>Tela de Cliente</h4>
+        <ul>
+          <li>Display em tempo real</li>
+          <li>Último item + subtotal + total</li>
+          <li>Auto-refresh contínuo</li>
+          <li>Bilíngue: PT / EN</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
+    <h2><span class="icon">🏗️</span> Arquitetura do App</h2>
+    <div class="arch">
+      <span class="hl">Bubble.io Web App</span><br>
+      │<br>
+      ├── <span class="hl">Sidebar Reusável</span> <span class="dim">(navegação global)</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Link → PDV &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">?tab=pdv</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Link → Estoque &nbsp;<span class="tag">?tab=estoque</span><br>
+      │&nbsp;&nbsp;&nbsp;└── Link → Ranking &nbsp;<span class="tag">?tab=ranking</span><br>
+      │<br>
+      ├── <span class="hl">index</span> <span class="dim">(página principal consolidada)</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Group pos-main &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">current_tab = "pdv"</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Group catalog-main &nbsp;<span class="tag">current_tab = "estoque"</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Group ranking-main &nbsp;<span class="tag">current_tab = "ranking"</span><br>
+      │&nbsp;&nbsp;&nbsp;├── Popup add-product-popup<br>
+      │&nbsp;&nbsp;&nbsp;├── Popup edit-product-popup<br>
+      │&nbsp;&nbsp;&nbsp;└── Popup delete-product-popup<br>
+      │<br>
+      ├── <span class="hl">customer</span> &nbsp;<span class="dim">(t
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercadinho do Irmão — README</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --accent: #7c5cbf;
+      --accent2: #a47fe3;
+      --text: #e8eaf0;
+      --muted: #8b90a8;
+      --green: #4caf88;
+      --yellow: #e8b84b;
+      --red: #e05c5c;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+      --mono: 'Fira Code', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    nav {
+      width: 260px;
+      min-width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 32px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo span { font-size: 24px; }
+
+    .nav-section {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin: 16px 0 6px;
+      padding-left: 8px;
+    }
+
+    nav a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+
+    nav a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    nav a.active {
+      background: rgba(124, 92, 191, 0.2);
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 48px 56px;
+      max-width: 960px;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1e1b35 0%, #1a2235 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .badges { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .badge.green { border-color: var(--green); color: var(--green); }
+    .badge.purple { border-color: var(--accent); color: var(--accent2); }
+    .badge.yellow { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 56px; scroll-margin-top: 24px; }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 .icon { font-size: 20px; }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent2);
+      margin: 28px 0 12px;
+    }
+
+    p { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
+
+    /* ── FEATURE CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      transition: border-color 0.15s;
+    }
+
+    .card:hover { border-color: var(--accent); }
+
+    .card-icon { font-size: 26px; margin-bottom: 10px; }
+
+    .card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+    }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); margin-bottom: 24px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead tr { background: var(--surface2); }
+
+    thead th {
+      text-align: left;
+      padding: 12px 16px;
+      color: var(--accent2);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    tbody tr:hover { background: var(--surface2); }
+
+    tbody td {
+      padding: 11px 16px;
+      color: var(--muted);
+      vertical-align: top;
+    }
+
+    tbody td:first-child { color: var(--text); font-weight: 500; }
+
+    code {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent2);
+    }
+
+    /* ── ARCHITECTURE BLOCK ── */
+    .arch {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+
+    .arch .hl { color: var(--accent2); font-weight: 600; }
+    .arch .dim { color: #4a4f6a; }
+    .arch .tag {
+      background: rgba(124,92,191,0.15);
+      border-radius: 4px;
+      padding: 1px 8px;
+      color: var(--accent2);
+      font-size: 11px;
+    }
+
+    /* ── ISSUES ── */
+    .issue-group { margin-bottom: 20px; }
+
+    .issue-page {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--yellow);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .issue-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .issue-item strong { color: var(--text); }
+
+    /* ── ROADMAP ── */
+    .roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .roadmap-item:last-child { border-bottom: none; }
+
+    .roadmap-item .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .roadmap-item.done .dot {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    /* ── STATE TABLE ── */
+    .state-badge {
+      background
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercadinho do Irmão — README</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --accent: #7c5cbf;
+      --accent2: #a47fe3;
+      --text: #e8eaf0;
+      --muted: #8b90a8;
+      --green: #4caf88;
+      --yellow: #e8b84b;
+      --red: #e05c5c;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+      --mono: 'Fira Code', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    nav {
+      width: 260px;
+      min-width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 32px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo span { font-size: 24px; }
+
+    .nav-section {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin: 16px 0 6px;
+      padding-left: 8px;
+    }
+
+    nav a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+
+    nav a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    nav a.active {
+      background: rgba(124, 92, 191, 0.2);
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 48px 56px;
+      max-width: 960px;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1e1b35 0%, #1a2235 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .badges { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .badge.green { border-color: var(--green); color: var(--green); }
+    .badge.purple { border-color: var(--accent); color: var(--accent2); }
+    .badge.yellow { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 56px; scroll-margin-top: 24px; }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 .icon { font-size: 20px; }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent2);
+      margin: 28px 0 12px;
+    }
+
+    p { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
+
+    /* ── FEATURE CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      transition: border-color 0.15s;
+    }
+
+    .card:hover { border-color: var(--accent); }
+
+    .card-icon { font-size: 26px; margin-bottom: 10px; }
+
+    .card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+    }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); margin-bottom: 24px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead tr {
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercadinho do Irmão — README</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --accent: #7c5cbf;
+      --accent2: #a47fe3;
+      --text: #e8eaf0;
+      --muted: #8b90a8;
+      --green: #4caf88;
+      --yellow: #e8b84b;
+      --red: #e05c5c;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+      --mono: 'Fira Code', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    nav {
+      width: 260px;
+      min-width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 32px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo span { font-size: 24px; }
+
+    .nav-section {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin: 16px 0 6px;
+      padding-left: 8px;
+    }
+
+    nav a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+
+    nav a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    nav a.active {
+      background: rgba(124, 92, 191, 0.2);
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 48px 56px;
+      max-width: 960px;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1e1b35 0%, #1a2235 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .badges { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .badge.green { border-color: var(--green); color: var(--green); }
+    .badge.purple { border-color: var(--accent); color: var(--accent2); }
+    .badge.yellow { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 56px; scroll-margin-top: 24px; }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercadinho do Irmão — README</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --accent: #7c5cbf;
+      --accent2: #a47fe3;
+      --text: #e8eaf0;
+      --muted: #8b90a8;
+      --green: #4caf88;
+      --yellow: #e8b84b;
+      --red: #e05c5c;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+      --mono: 'Fira Code', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    nav {
+      width: 260px;
+      min-width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 32px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo span { font-size: 24px; }
+
+    .nav-section {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin: 16px 0 6px;
+      padding-left: 8px;
+    }
+
+    nav a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+
+    nav a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    nav a.active {
+      background: rgba(124, 92, 191, 0.2);
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 48px 56px;
+      max-width: 960px;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1e1b35 0%, #1a2235 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercadinho do Irmão — README</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --accent: #7c5cbf;
+      --accent2: #a47fe3;
+      --text: #e8eaf0;
+      --muted: #8b90a8;
+      --green: #4caf88;
+      --yellow: #e8b84b;
+      --red: #e05c5c;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+      --mono: 'Fira Code', 'Courier New', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    nav {
+      width: 260px;
+      min-width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 32px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo span { font-size: 24px; }
+
+    .nav-section {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin: 16px 0 6px;
+      padding-left: 8px;
+    }
+
+    nav
