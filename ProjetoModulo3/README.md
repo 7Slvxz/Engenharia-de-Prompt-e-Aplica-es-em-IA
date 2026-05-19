@@ -370,6 +370,8 @@ adequado. Cada grupo de conteúdo possui uma condicional de visibilidade e
 | `theme` | text | Preferência de tema visual |
 | `email` | text | E-mail de acesso           |
 
+
+Limitaçoes: Não consigo realizar vendas, o darkmode não funcionou, não consigo adicionar produtos corretamente.
 **Privacidade:** Cada usuário só pode ver e editar os próprios dados.
 
 ---
