@@ -372,6 +372,8 @@ adequado. Cada grupo de conteúdo possui uma condicional de visibilidade e
 
 
 Limitaçoes: Não consigo realizar vendas, o darkmode não funcionou, não consigo adicionar produtos corretamente.
+
+
 **Privacidade:** Cada usuário só pode ver e editar os próprios dados.
 
 ---
