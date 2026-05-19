@@ -1,8 +1,8 @@
 # 🛒 Mercadinho do Irmão — README
 
 > Sistema de ponto de venda (PDV) e gestão de estoque para pequeno varejo,
-> construído integralmente em [Bubble.io](https://bubble.io).
-
+> construído integralmente em [Bubble.io](https://bubble.io) e com ajuda do GEMINI.
+https://mercado-71927.bubbleapps.io/version-test?debug_mode=true
 ---
 
 ## 📋 Índice
