@@ -70,31 +70,12 @@ em tempo real os itens adicionados ao carrinho e o total a pagar.
 ## Arquitetura do App
 
 
-
-> Sistema de ponto de venda (PDV) e gestão de estoque para pequeno varejo,
-> construído integralmente em [Bubble.io](https://bubble.io).
-
 ---
 
 ---
 
 
-> Sistema de ponto de venda (PDV) e gestão de estoque para pequeno varejo,
-> construído integralmente em [Bubble.io](https://bubble.io).
-
 ---
-
-## 📋 Índice
-
-- [Visão Geral](#visão-geral)
-- [Funcionalidades](#funcionalidades)
-- [Arquitetura do App](#arquitetura-do-app)
-- [Modelo de Dados](#modelo-de-dados)
-- [Páginas e Navegação](#páginas-e-navegação)
-- [Fluxos de Trabalho (Workflows)](#fluxos-de-trabalho-workflows)
-- [Estado Global (Custom States)](#estado-global-custom-states)
-- [Problemas Conhecidos](#problemas-conhecidos)
-- [Roadmap / Próximos Passos](#roadmap--próximos-passos)
 
 ---
 
