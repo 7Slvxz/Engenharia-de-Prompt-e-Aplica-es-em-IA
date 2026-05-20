@@ -9,7 +9,6 @@ https://mercado-71927.bubbleapps.io/version-test?debug_mode=true
 
 - [Visão Geral](#visão-geral)
 - [Funcionalidades](#funcionalidades)
-- [Arquitetura do App](#arquitetura-do-app)
 - [Modelo de Dados](#modelo-de-dados)
 - [Páginas e Navegação](#páginas-e-navegação)
 - [Fluxos de Trabalho (Workflows)](#fluxos-de-trabalho-workflows)
@@ -65,19 +64,7 @@ em tempo real os itens adicionados ao carrinho e o total a pagar.
 - Aceita Pix, Cartão e Dinheiro
 - Bilíngue: Português / Inglês
 
----
 
-## Arquitetura do App
-
-
----
-
----
-
-
----
-
----
 
 ## Visão Geral
 
